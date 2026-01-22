@@ -1,4 +1,4 @@
-modules = ["nodejs-20"]
+modules = ["nodejs-20", "python-3.11"]
 [agent]
 expertMode = true
 
@@ -15,15 +15,15 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Next.js Dev Server"
+args = "Flask App"
 
 [[workflows.workflow]]
-name = "Next.js Dev Server"
+name = "Flask App"
 author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "pnpm dev"
+args = "python app.py"
 waitForPort = 5000
 
 [workflows.workflow.metadata]

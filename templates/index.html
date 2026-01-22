@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registo de Cliques</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .buttons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        button { padding: 15px 30px; font-size: 16px; cursor: pointer; }
+        #log { border: 1px solid #ccc; padding: 10px; width: 300px; min-height: 100px; }
+        .click-entry { margin-bottom: 5px; font-size: 14px; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>Registo de Cliques</h1>
+    <div class="buttons">
+        <button onclick="registerClick('Botão 1')">Botão 1</button>
+        <button onclick="registerClick('Botão 2')">Botão 2</button>
+        <button onclick="registerClick('Botão 3')">Botão 3</button>
+        <button onclick="registerClick('Botão 4')">Botão 4</button>
+    </div>
+    <div id="log">
+        <strong>Último Clique:</strong>
+        <div id="last-click">Nenhum clique registado hoje.</div>
+    </div>
+
+    <script>
+        async function registerClick(buttonId) {
+            const response = await fetch('/click', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ button_id: buttonId })
+            });
+            const data = await response.json();
+            document.getElementById('last-click').innerHTML = `
+                <div class="click-entry">
+                    <strong>${buttonId}</strong><br>
+                    Nº Sequencial: ${data.sequence}<br>
+                    Data: ${data.date}<br>
+                    Hora: ${data.time}
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
