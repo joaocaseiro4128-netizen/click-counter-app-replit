@@ -1,28 +1,23 @@
-# My V0 Project
+# Projeto Registo de Cliques
 
-## Overview
-A Next.js 16 project with React 19, TypeScript, and TailwindCSS 4.
+## Visão Geral
+Uma aplicação web simples para registar cliques em botões com carimbo de data/hora e contador sequencial diário.
 
-## Project Structure
-```
-app/           - Next.js App Router pages and layouts
-  layout.tsx   - Root layout component
-  page.tsx     - Home page
-  globals.css  - Global styles with TailwindCSS
-```
+## Estrutura do Projeto
+- `src/app.py`: Backend Flask com integração PostgreSQL (SQLAlchemy).
+- `src/templates/index.html`: Frontend HTML/JS.
 
 ## Tech Stack
-- **Framework**: Next.js 16.0.10
-- **UI Library**: React 19.2.0
-- **Styling**: TailwindCSS 4
-- **Language**: TypeScript 5
-- **Package Manager**: pnpm
+- **Backend**: Python 3.11, Flask, Flask-SQLAlchemy
+- **Base de Dados**: PostgreSQL
+- **Frontend**: HTML, CSS, JavaScript
 
-## Development
-- Run `pnpm dev` to start the development server on port 5000
-- Run `pnpm build` to create a production build
-- Run `pnpm start` to start the production server
+## Desenvolvimento
+- O servidor corre no porto 5000.
+- A base de dados é inicializada automaticamente ao iniciar o `app.py`.
 
-## Deployment
-- Builds to `.next` directory
-- Production command: `pnpm start`
+## Requisitos do Enunciado
+- 4 botões identificados.
+- Contador sequencial diário (reinicia a cada novo dia).
+- Registo de data e hora (HH:mm).
+- Persistência em base de dados.
