@@ -51,5 +51,26 @@ def register_click():
         'time': current_time
     })
 
+@app.route('/stats')
+def get_stats():
+    today = datetime.now().date()
+    clicks = Click.query.filter_by(date=today).all()
+    
+    stats = {
+        'total': len(clicks),
+        'buttons': {
+            'Botao 1': 0,
+            'Botao 2': 0,
+            'Botao 3': 0,
+            'Botao 4': 0
+        }
+    }
+    
+    for click in clicks:
+        if click.button_id in stats['buttons']:
+            stats['buttons'][click.button_id] += 1
+            
+    return jsonify(stats)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
